@@ -17,6 +17,7 @@ CREATE TABLE T_TrainingCourses(
 	Name			 VARCHAR(20) NOT NULL,
 	Description		 VARCHAR(50) NOT NULL,
 	Duration		 int(4)		 NOT NULL,
+	Type			 VARCHAR(15) NOT NULL,
 	Price			 float(8)	 NOT NULL
 )ENGINE = InnoDB;
 
@@ -66,8 +67,8 @@ INSERT INTO T_Categories (CatName, Description) VALUES ("Front-end","Language, I
 INSERT INTO T_Categories (CatName, Description) VALUES ("Frameworks","Tous les frameworks utilisables d'applications");
 INSERT INTO T_Categories (CatName, Description) VALUES ("Api","lien entre le Back-end et le Front-end");
 
-INSERT INTO T_TrainingCourses (Name, Description, Duration, Price, IdCategory) VALUES ("Java","Java SE 8 : Syntaxe & Poo", 20, 1000.0, 1);
-INSERT INTO T_TrainingCourses (Name, Description, Duration, Price, IdCategory) VALUES ("Java avancé","Exceptions, fichiers, jdbc, thread...", 20, 1100.0, 1);
-INSERT INTO T_TrainingCourses (Name, Description, Duration, Price, IdCategory) VALUES ("Spring","Spring Core/MVC/Security", 20, 500.0, 4);
-INSERT INTO T_TrainingCourses (Name, Description, Duration, Price, IdCategory) VALUES ("Php frameworks","Symphony", 15, 940.0, 3);
-INSERT INTO T_TrainingCourses (Name, Description, Duration, Price, IdCategory) VALUES ("C#","DotNet Core", 20, 3000.0, 1);
+INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Java","Java SE 8 : Syntaxe & Poo", 20, "Présentiel", 1000.0, 1);
+INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Java avancé","Exceptions, fichiers, jdbc, thread...", 20, "Présentiel", 1100.0, 1);
+INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Spring","Spring Core/MVC/Security", 20, "Distanciel", 500.0, 4);
+INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Php frameworks","Symphony", 15, "Distanciel", 940.0, 3);
+INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("C#","DotNet Core", 20, "Présentiel", 3000.0, 1);
