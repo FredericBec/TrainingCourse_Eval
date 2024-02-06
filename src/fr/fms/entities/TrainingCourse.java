@@ -29,6 +29,15 @@ public class TrainingCourse {
 		this.IdCategory = IdCategory;
 	}
 
+	public TrainingCourse(String name, String description, int duration, String type, double price) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.duration = duration;
+		this.type = type;
+		this.price = price;
+	}
+
 	public int getIdTrainingCourse() {
 		return IdTrainingCourse;
 	}
