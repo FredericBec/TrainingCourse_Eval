@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 
 public class BddConnection {
 
+	private static Connection connection = null;
 	private static String driver;
 	private static String url;
 	private static String login;
 	private static String password;
-	private static Connection connection = null;
 	public static final Logger logger = Logger.getLogger(BddConnection.class.getName());
 	
 	private BddConnection() {
@@ -47,9 +47,9 @@ public class BddConnection {
 		}catch(IOException e) {
 			logger.severe("Erreur de lecture du fichier" + e.getMessage());
 		}
-		props.getProperty("db.driver");
-		props.getProperty("db.url");
-		props.getProperty("db.login");
-		props.getProperty("db.password");
+		driver = props.getProperty("db.driver");
+		url = props.getProperty("db.url");
+		login = props.getProperty("db.login");
+		password = props.getProperty("db.password");
 	}
 }
