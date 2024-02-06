@@ -10,6 +10,7 @@ import fr.fms.entities.TrainingCourse;
 public class TrainingCourseDao implements Dao<TrainingCourse> {
 
 	private static ArrayList<TrainingCourse> trainingCourses = new ArrayList<TrainingCourse>();
+	private static ArrayList<TrainingCourse> tcFilter = new ArrayList<TrainingCourse>();
 	
 	@Override
 	public void create(TrainingCourse obj) {
@@ -112,6 +113,63 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 			logger.severe("Problème d'accès aux données : " + e.getMessage());
 		}
 		return trainingCourses;
+	}
+
+	@Override
+	public ArrayList<TrainingCourse> readAllFilter(int id) {
+		String requestFilter = "SELECT IdTrainingCourse, Name, tc.Description, Duration, Type, Price FROM T_TrainingCourses AS tc"
+				+ "INNER JOIN T_Categories AS c ON tc.IdCategory = c.IdCategory WHERE c.IdCategory = ?;";
+		try(PreparedStatement ps = connection.prepareStatement(requestFilter)) {
+			ps.setInt(1, id);
+			try(ResultSet resultSet = ps.executeQuery()){
+				while(resultSet.next()) {
+					int rsIdTrainingCourse = resultSet.getInt("IdTrainingCourse");
+					String rsName = resultSet.getString("Name");
+					String rsDescription = resultSet.getString("Description");
+					int rsDuration = resultSet.getInt("Duration");
+					String rsType = resultSet.getString("Type");
+					double rsPrice = resultSet.getDouble("Price");
+					tcFilter.add(new TrainingCourse(rsIdTrainingCourse, rsName, rsDescription, rsDuration, rsType, rsPrice));
+				}
+			}
+		} catch (SQLException e) {
+			logger.severe("Problème d'accès aux données : " + e.getMessage());
+		}
+		return tcFilter;
+	}
+
+	@Override
+	public ArrayList<TrainingCourse> searchTcByName(String word) {
+		String searchTc = "SELECT * FROM T_TrainingCourses WHERE Name LIKE '%?%';";
+		try(PreparedStatement ps = connection.prepareStatement(searchTc)) {
+			ps.setString(1, word);
+			try(ResultSet resultSet = ps.executeQuery()){
+				while(resultSet.next()) {
+					int rsIdTrainingCourse = resultSet.getInt("IdTrainingCourse");
+					String rsName = resultSet.getString("Name");
+					String rsDescription = resultSet.getString("Description");
+					int rsDuration = resultSet.getInt("Duration");
+					String rsType = resultSet.getString("Type");
+					double rsPrice = resultSet.getDouble("Price");
+					tcFilter.add(new TrainingCourse(rsIdTrainingCourse, rsName, rsDescription, rsDuration, rsType, rsPrice));
+				}
+			}
+		} catch (SQLException e) {
+			logger.severe("Problème d'accès aux données : " + e.getMessage());
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<TrainingCourse> searchTcByDescription(String word) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<TrainingCourse> searchTcByType(String word) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
