@@ -25,10 +25,11 @@ public interface IBusiness {
 	public void deleteFromCart(int id);
 	
 	/**
-	 * Prise de commande
+	 * Prise de commande en récupérant l'id du client en base
+	 * @param id du compte client
 	 * @return la commande
 	 */
-	public int takeOrder();
+	public int takeOrder(int idCustomer);
 	
 	/**
 	 * Méthode qui renvoie la liste des formations de la table t_trainingcourses en base
