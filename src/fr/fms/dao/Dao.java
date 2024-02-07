@@ -13,6 +13,4 @@ public interface Dao<T> {
 	public boolean update(T obj);
 	public boolean delete(T obj);
 	public ArrayList<T> readAll();
-	public ArrayList<T> readAllByCategory(int id);
-	//public ArrayList<T> searchTcByKey(String word);
 }
