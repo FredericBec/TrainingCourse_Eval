@@ -137,7 +137,6 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 	 * Méthode permettant de sélectionner les formations d'une catégorie en base
 	 * puis les ajoute à une liste dont celle-ci est retournée par la méthode.
 	 */
-	@Override
 	public ArrayList<TrainingCourse> readAllByCategory(int id) {
 		String requestFilter = "SELECT IdTrainingCourse, Name, T_TrainingCourses.Description, Duration, Type, Price FROM T_TrainingCourses "
 				+ "INNER JOIN T_Categories ON T_TrainingCourses.IdCategory = T_Categories.IdCategory WHERE T_Categories.IdCategory = ?;";
@@ -160,7 +159,6 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		return tcFilter;
 	}
 	/*
-	@Override
 	public ArrayList<TrainingCourse> searchTcByKey(String word) {
 		String searchTc = "SELECT * FROM T_TrainingCourses WHERE Name LIKE '?%';";
 		try(PreparedStatement ps = connection.prepareStatement(searchTc)) {
