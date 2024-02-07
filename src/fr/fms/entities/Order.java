@@ -11,8 +11,14 @@ public class Order {
 	private int idCustomer;
 	
 	public Order(int idOrder, String name, double totalAmount, Date date, int idCustomer) {
-		super();
 		this.idOrder = idOrder;
+		this.name = name;
+		this.totalAmount = totalAmount;
+		this.date = date;
+		this.idCustomer = idCustomer;
+	}
+	
+	public Order(String name, double totalAmount, Date date, int idCustomer) {
 		this.name = name;
 		this.totalAmount = totalAmount;
 		this.date = date;
@@ -20,7 +26,6 @@ public class Order {
 	}
 
 	public Order(String name, double totalAmount, Date date) {
-		super();
 		this.name = name;
 		this.totalAmount = totalAmount;
 		this.date = date;
