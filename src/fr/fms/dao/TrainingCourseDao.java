@@ -11,7 +11,11 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 
 	private static ArrayList<TrainingCourse> trainingCourses = new ArrayList<TrainingCourse>();
 	private static ArrayList<TrainingCourse> tcFilter = new ArrayList<TrainingCourse>();
+	//private static ArrayList<TrainingCourse> tcByKey = new ArrayList<TrainingCourse>();
 	
+	/**
+	 * Méthode qui créé une formation en base de données dont l'id est généré automatiquement.
+	 */
 	@Override
 	public void create(TrainingCourse obj) {
 		String create = "INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price) VALUES (?,?,?,?,?);";
@@ -29,6 +33,9 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		
 	}
 
+	/**
+	 * Méthode permettant d'afficher une formation selon son id.
+	 */
 	@Override
 	public TrainingCourse read(int id) {
 		TrainingCourse trainingCourse = null;
@@ -56,6 +63,9 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		return trainingCourse;
 	}
 
+	/**
+	 * Méthode qui met à jour la formation puis renvoie si la modification est prise en compte.
+	 */
 	@Override
 	public boolean update(TrainingCourse obj) {
 		String updateTc = "UPDATE T_TrainingCourses SET IdTrainingCourse = ?, Name = ?, Description = ?, "
@@ -79,6 +89,10 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		return false;
 	}
 
+	/**
+	 * Méthode permettant de supprimer une formation en base
+	 * renvoie si la formation a bien été supprimée.
+	 */
 	@Override
 	public boolean delete(TrainingCourse obj) {
 		String deleteTc = "DELETE FROM T_TrainingCourses WHERE IdTrainingCourse = ?;";
@@ -94,6 +108,10 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		return false;
 	}
 
+	/**
+	 * Méthode qui séléctionne toutes les formations en base puis les ajoute à la liste
+	 * et renvoie la liste de formations.
+	 */
 	@Override
 	public ArrayList<TrainingCourse> readAll() {
 		String requestSql = "SELECT * FROM T_TrainingCourses;";
@@ -115,10 +133,14 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		return trainingCourses;
 	}
 
+	/**
+	 * Méthode permettant de sélectionner les formations d'une catégorie en base
+	 * puis les ajoute à une liste dont celle-ci est retournée par la méthode.
+	 */
 	@Override
-	public ArrayList<TrainingCourse> readAllFilter(int id) {
-		String requestFilter = "SELECT IdTrainingCourse, Name, tc.Description, Duration, Type, Price FROM T_TrainingCourses AS tc"
-				+ "INNER JOIN T_Categories AS c ON tc.IdCategory = c.IdCategory WHERE c.IdCategory = ?;";
+	public ArrayList<TrainingCourse> readAllByCategory(int id) {
+		String requestFilter = "SELECT IdTrainingCourse, Name, T_TrainingCourses.Description, Duration, Type, Price FROM T_TrainingCourses "
+				+ "INNER JOIN T_Categories ON T_TrainingCourses.IdCategory = T_Categories.IdCategory WHERE T_Categories.IdCategory = ?;";
 		try(PreparedStatement ps = connection.prepareStatement(requestFilter)) {
 			ps.setInt(1, id);
 			try(ResultSet resultSet = ps.executeQuery()){
@@ -137,12 +159,14 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 		}
 		return tcFilter;
 	}
-
+	/*
 	@Override
-	public ArrayList<TrainingCourse> searchTcByName(String word) {
-		String searchTc = "SELECT * FROM T_TrainingCourses WHERE Name LIKE '%?%';";
+	public ArrayList<TrainingCourse> searchTcByKey(String word) {
+		String searchTc = "SELECT * FROM T_TrainingCourses WHERE Name LIKE '?%';";
 		try(PreparedStatement ps = connection.prepareStatement(searchTc)) {
 			ps.setString(1, word);
+			//ps.setString(2, word);
+			//ps.setString(3, word);
 			try(ResultSet resultSet = ps.executeQuery()){
 				while(resultSet.next()) {
 					int rsIdTrainingCourse = resultSet.getInt("IdTrainingCourse");
@@ -151,26 +175,13 @@ public class TrainingCourseDao implements Dao<TrainingCourse> {
 					int rsDuration = resultSet.getInt("Duration");
 					String rsType = resultSet.getString("Type");
 					double rsPrice = resultSet.getDouble("Price");
-					tcFilter.add(new TrainingCourse(rsIdTrainingCourse, rsName, rsDescription, rsDuration, rsType, rsPrice));
+					tcByKey.add(new TrainingCourse(rsIdTrainingCourse, rsName, rsDescription, rsDuration, rsType, rsPrice));
 				}
 			}
 		} catch (SQLException e) {
 			logger.severe("Problème d'accès aux données : " + e.getMessage());
 		}
 		return null;
-	}
-
-	@Override
-	public ArrayList<TrainingCourse> searchTcByDescription(String word) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<TrainingCourse> searchTcByType(String word) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
+	}	
+	*/
 }
