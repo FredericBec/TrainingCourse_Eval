@@ -1,0 +1,45 @@
+package fr.fms.entities;
+
+public class User {
+
+	private int IdUser;
+	private String login;
+	private String password;
+	
+	public User(int idUser, String login, String password) {
+		super();
+		IdUser = idUser;
+		this.login = login;
+		this.password = password;
+	}
+
+	public int getIdUser() {
+		return IdUser;
+	}
+
+	public void setIdUser(int idUser) {
+		IdUser = idUser;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [IdUser=" + IdUser + ", login=" + login + ", password=" + password + "]";
+	}
+	
+}
