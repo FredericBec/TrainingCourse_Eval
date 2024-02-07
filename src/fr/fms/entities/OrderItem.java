@@ -3,25 +3,22 @@ package fr.fms.entities;
 public class OrderItem {
 
 	private int idOrderItem;
-	private int quantity;
-	private double amount;
+	private double price;
 	private int idTrainingCourse;
 	private int idOrder;
 	
-	public OrderItem(int idOrderItem, int quantity, double amount, int idTrainingCourse, int idOrder) {
+	public OrderItem(int idOrderItem, double price, int idTrainingCourse, int idOrder) {
 		super();
 		this.idOrderItem = idOrderItem;
-		this.quantity = quantity;
-		this.amount = amount;
+		this.price = price;
 		this.idTrainingCourse = idTrainingCourse;
 		this.idOrder = idOrder;
 	}
 	
-	public OrderItem(int quantity, double amount, int idTrainingCourse) {
-		super();
-		this.quantity = quantity;
-		this.amount = amount;
+	public OrderItem(double price, int idTrainingCourse, int idOrder) {
+		this.price = price;
 		this.idTrainingCourse = idTrainingCourse;
+		this.idOrder = idOrder;
 	}
 	
 	public int getIdOrderItem() {
@@ -32,20 +29,12 @@ public class OrderItem {
 		this.idOrderItem = idOrderItem;
 	}
 	
-	public int getQuantity() {
-		return quantity;
+	public double getPrice() {
+		return price;
 	}
 	
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	public double getAmount() {
-		return amount;
-	}
-	
-	public void setAmount(double amount) {
-		this.amount = amount;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 	
 	public int getIdTrainingCourse() {
@@ -66,7 +55,7 @@ public class OrderItem {
 
 	@Override
 	public String toString() {
-		return "OrderItem [idOrderItem=" + idOrderItem + ", quantity=" + quantity + ", amount=" + amount
+		return "OrderItem [idOrderItem=" + idOrderItem + ", price=" + price
 				+ ", idTrainingCourse=" + idTrainingCourse + ", idOrder=" + idOrder + "]";
 	}
 	
