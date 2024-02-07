@@ -52,10 +52,4 @@ public class CategoryDao implements Dao<Category> {
 		return categories;
 	}
 
-	@Override
-	public ArrayList<Category> readAllByCategory(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
