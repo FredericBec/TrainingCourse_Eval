@@ -6,7 +6,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import fr.fms.entities.Category;
-import fr.fms.entities.TrainingCourse;
 
 public class CategoryDao implements Dao<Category> {
 
