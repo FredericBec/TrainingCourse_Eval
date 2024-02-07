@@ -8,7 +8,7 @@ public class Customer {
 	private String address;
 	private String email;
 	private String phone;
-	private int IdUser;
+	private int idUser;
 	
 	public Customer(int idCustomer, String name, String firstName, String address, String email, String phone,
 			int idUser) {
@@ -18,7 +18,7 @@ public class Customer {
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
-		IdUser = idUser;
+		this.idUser = idUser;
 	}
 
 	public Customer(String name, String firstName, String address, String email, String phone) {
@@ -78,11 +78,11 @@ public class Customer {
 	}
 
 	public int getIdUser() {
-		return IdUser;
+		return idUser;
 	}
 
 	public void setIdUser(int idUser) {
-		IdUser = idUser;
+		this.idUser = idUser;
 	}
 
 	@Override
