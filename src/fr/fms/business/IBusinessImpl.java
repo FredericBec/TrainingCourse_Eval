@@ -40,20 +40,25 @@ public class IBusinessImpl implements IBusiness{
 	}
 
 	@Override
-	public ArrayList<TrainingCourse> showTrainingCourseList() {
+	public ArrayList<TrainingCourse> readTrainingCourseList() {
 		return trainingCourseDao.readAll();
 	}
 
 	@Override
-	public TrainingCourse showTrainingCourse(int id) {
-		
+	public TrainingCourse readTrainingCourse(int id) {
 		return trainingCourseDao.read(id);
 	}
 
 	@Override
+	public ArrayList<TrainingCourse> readTrainingCourseListByCategory(int id) {
+		return trainingCourseDao.readAllByCategory(id);
+	}
+	
+	@Override
 	public ArrayList<Category> readCategories() {
 		return categoryDao.readAll();
 	}
+
 
 	
 }
