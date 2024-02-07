@@ -7,8 +7,12 @@ public class User {
 	private String password;
 	
 	public User(int idUser, String login, String password) {
-		super();
 		this.idUser = idUser;
+		this.login = login;
+		this.password = password;
+	}
+
+	public User(String login, String password) {
 		this.login = login;
 		this.password = password;
 	}
@@ -16,8 +20,6 @@ public class User {
 	public int getIdUser() {
 		return idUser;
 	}
-
-
 
 	public void setIdUser(int idUser) {
 		this.idUser = idUser;
@@ -43,7 +45,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [IdUser=" + IdUser + ", login=" + login + ", password=" + password + "]";
+		return idUser + " - " + login + " - " + password;
 	}
 	
 }
