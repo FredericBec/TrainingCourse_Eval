@@ -21,12 +21,13 @@ public class Customer {
 		this.idUser = idUser;
 	}
 
-	public Customer(String name, String firstName, String address, String email, String phone) {
+	public Customer(String name, String firstName, String address, String email, String phone, int idUser) {
 		this.name = name;
 		this.firstName = firstName;
 		this.address = address;
 		this.email = email;
 		this.phone = phone;
+		this.idUser = idUser;
 	}
 
 	public int getIdCustomer() {
@@ -87,8 +88,8 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "Customer [idCustomer=" + idCustomer + ", name=" + name + ", firstName=" + firstName + ", address="
-				+ address + ", email=" + email + ", phone=" + phone + ", IdUser=" + IdUser + "]";
+		return idCustomer + " - " + name + " - " + firstName + " - "
+				+ address + " - " + email + " - " + phone + " - " + idUser;
 	}
 	
 }
