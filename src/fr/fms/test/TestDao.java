@@ -81,9 +81,9 @@ public class TestDao {
 		System.out.println("\n-----------------------------------------\n");
 		//Test de OrderDao
 		OrderDao orders = new OrderDao();
-		Order order = new Order(customers.read(1).getName(), 1000.0, new Date(2024, 2, 7));
+		Order order = new Order(customers.read(1).getName(), 2000.0, new Date(24, 2, 7), 1);
 		
-		//orders.create(order);
+		orders.create(order);
 		
 		System.out.println("\n-----------------------------------------\n");
 		//Test de OrderItemDao
