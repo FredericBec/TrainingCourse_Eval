@@ -32,7 +32,7 @@ CREATE TABLE T_Customers(
 	Name		VARCHAR(30)	 NOT NULL,
 	FirstName	VARCHAR(30)	 NOT NULL,
 	Address		VARCHAR(100) NOT NULL,
-	Email		VARCHAR(50)  NOT NULL,
+	Email		VARCHAR(50)  NOT NULL unique,
 	Phone		VARCHAR(15)  NOT NULL
 )ENGINE = InnoDB;
 
@@ -40,13 +40,12 @@ CREATE TABLE T_Orders(
 	IdOrder		int(4)		 PRIMARY KEY AUTO_INCREMENT,
 	Name		VARCHAR(30)	 NOT NULL,
 	TotalAmount float(8)	 NOT NULL,
-	DateOrder	date		 NOT NULL
+	DateOrder	DATE		 NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE T_OrderItems(
 	IdOrderItem	int(4)		 PRIMARY KEY AUTO_INCREMENT,
-	Quantity	int(4)		 NULL,
-	Amount		float(8)	 NULL
+	Price		float(8)	 NULL
 )ENGINE = InnoDB;
 
 -- Ajout des clés étrangères
@@ -72,3 +71,8 @@ INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCateg
 INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Spring","Spring Core/MVC/Security", 20, "Distanciel", 500.0, 4);
 INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("Php frameworks","Symphony", 15, "Distanciel", 940.0, 3);
 INSERT INTO T_TrainingCourses (Name, Description, Duration, Type, Price, IdCategory) VALUES ("C#","DotNet Core", 20, "Présentiel", 3000.0, 1);
+
+INSERT INTO T_Users (Login, Password) VALUES ("Fred", "BmI4@e40D");
+INSERT INTO T_Users (Login, Password) VALUES ("Chris", "Pine@StarTrek");
+INSERT INTO T_Users (Login, Password) VALUES ("Doctor", "Who");
+INSERT INTO T_Users (Login, Password) VALUES ("Captain", "America");
