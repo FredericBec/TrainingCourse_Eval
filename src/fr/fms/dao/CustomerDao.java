@@ -44,7 +44,6 @@ public class CustomerDao implements Dao<Customer>{
 					String rsEmail = resultSet.getString("Email");
 					String rsPhone = resultSet.getString("Phone");
 					int rsIdUser = resultSet.getInt("IdUser");
-					System.out.println("Utilisateur trouvé");
 					return customer = new Customer(rsIdCustomer, rsName, rsFirstName, rsAddress, rsEmail, rsPhone, rsIdUser);
 				}else
 					System.out.println("Compte client non trouvé");
@@ -87,6 +86,30 @@ public class CustomerDao implements Dao<Customer>{
 			logger.severe("Liste de client non trouvée : " + e.getMessage());
 		}
 		return customers;
+	}
+	
+	public Customer findCustomer(int idUser) {
+		String requestSql = "SELECT * FROM T_Customers WHERE IdCustomer = ?;";
+		try(PreparedStatement ps = connection.prepareStatement(requestSql)) {
+			ps.setInt(1, idUser);
+			try(ResultSet resultSet = ps.executeQuery()){
+				if(resultSet.next()) {
+					int rsIdCustomer = resultSet.getInt("IdCustomer");
+					String rsName = resultSet.getString("Name");
+					String rsFirstName = resultSet.getString("FirstName");
+					String rsAddress = resultSet.getString("Address");
+					String rsEmail = resultSet.getString("Email");
+					String rsPhone = resultSet.getString("Phone");
+					int rsIdUser = resultSet.getInt("IdUser");
+					System.out.println("Client trouvé");
+					return new Customer(rsIdCustomer, rsName, rsFirstName, rsAddress, rsEmail, rsPhone, rsIdUser);
+				}else
+					System.out.println("Compte client non trouvé");
+			}
+		} catch (SQLException e) {
+			logger.severe("Problème de lecture du compte client : " + e.getMessage());
+		}
+		return null;
 	}
 
 }
