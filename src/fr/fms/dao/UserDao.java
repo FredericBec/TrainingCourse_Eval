@@ -98,18 +98,23 @@ public class UserDao implements Dao<User> {
 		return users;
 	}
 	
-	public boolean validLogin(String login, String password) {
+	public User findUserByCredentials(String login, String password) {
 		String rqValidLogin = "SELECT * FROM T_Users WHERE Login = ? AND Password = ?;";
 		try(PreparedStatement ps = connection.prepareStatement(rqValidLogin)) {
 			ps.setString(1, login);
 			ps.setString(2, password);
 			try(ResultSet resultSet = ps.executeQuery()){
-				return resultSet.next();
+				while(resultSet.next()) {
+					int rsIdUser = resultSet.getInt("IdUser");
+					String rsLogin = resultSet.getString("Login");
+					String rsPassword = resultSet.getString("Password");
+					return new User(rsIdUser, rsLogin, rsPassword);
+				}
 			}
 		} catch (SQLException e) {
 			logger.severe("Erreur de saisie" + e.getMessage());
 		}
-		return false;
+		return null;
 	}
 
 }
