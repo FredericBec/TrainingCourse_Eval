@@ -45,11 +45,12 @@ public class IBusinessImpl implements IBusiness{
 	public int takeOrder(int idCustomer) {
 		if(customerDao.read(idCustomer) != null) {
 			double totalAmount = getTotalAmount();
-			Order order = new Order(customerDao.read(idCustomer).getName(), totalAmount, new Date());
+			Order order = new Order(customerDao.read(idCustomer).getName(), totalAmount, new Date(), customerDao.read(idCustomer).getIdCustomer());
 			orderDao.create(order);
 			for(TrainingCourse t : cart.values())
 				orderItemDao.create(new OrderItem(t.getPrice(), t.getIdTrainingCourse(), order.getIdOrder()));
 			return order.getIdOrder();
+			
 		}
 		return 0;
 	}
@@ -79,6 +80,10 @@ public class IBusinessImpl implements IBusiness{
 		cart.values().forEach((a) -> totalAmount[0] += a.getPrice());
 		
 		return totalAmount[0];
+	}
+	
+	public void clearCart() {
+		cart.clear();
 	}
 	
 }
